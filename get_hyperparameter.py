@@ -28,6 +28,7 @@ def get_parameters_and_error(product_name, days_amount):
     Q_list = [1]
 
     mape_list = []
+    load_percent = 0
 
     for p in p_list:
         for d in d_list:
@@ -41,7 +42,10 @@ def get_parameters_and_error(product_name, days_amount):
                             predictions = result.predict(len(train), len(train) + len(test) - 1)
                             mape_list.append(((p, d, q, P, D, Q), round(mape(predictions, test), 4),
                                               round(wape(predictions, test), 4)))
-                            print(p, d, q, P, D, Q)
+
+                            load_percent += 1
+                            # if load_percent % 5 == 0:
+                            #     print(round(load_percent / 25 * 100), "%")
 
     sorted_list = sorted(mape_list, key=lambda tup: tup[1] + tup[2] * 0.3)
     return sorted_list[0]

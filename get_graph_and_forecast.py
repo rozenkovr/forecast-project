@@ -29,6 +29,7 @@ def draw_forecast(predictions, product_name):
     test_df = df[product_name]
     all_data_test1 = test_df["2022-02-15":"2022-06-01"]
 
+    plt.figure(figsize=(14, 7))
     plt.xlabel("дата")
     plt.ylabel("продажи за день")
     plt.title("предсказание продаж на 2 недели")
